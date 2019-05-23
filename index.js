@@ -4,18 +4,21 @@ const fs = require('fs-extra')
 const cheerio = require('cheerio')
 const fetch = require('node-fetch')
 
-function getScript(html) {
+function getScript (html) {
   const $ = cheerio.load(html)
-  const [script] = $('script').filter(function (i, elem) {
+  const [script] = $('script')
+    .filter(function (i, elem) {
       return elem.children[0] && elem.children[0].data.includes('ui.add')
-  }).map(function (i, elem) {
-    return elem.children[0].data
-  }).get()
+    })
+    .map(function (i, elem) {
+      return elem.children[0].data
+    })
+    .get()
 
   return script.replace(/(\s+ui.browserscope.key = '\w+')/, '')
 }
 
-function createScript(html) {
+function createScript (html) {
   return `
     const Benchmark = require('benchmark')
     const ui = new Benchmark.Suite()
@@ -34,13 +37,13 @@ function createScript(html) {
   `
 }
 
-function writeScript(name) {
+function writeScript (name) {
   return function (script) {
     return fs.writeFile(path.join(process.cwd(), `${name}.js`), script)
   }
 }
 
-function getName(jsperfUrl) {
+function getName (jsperfUrl) {
   return url.parse(jsperfUrl).pathname.split('/')[1]
 }
 
