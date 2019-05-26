@@ -1,14 +1,14 @@
 {
   "name": "grab-jsperf",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.0.1",
+  "description": "Retrieve a jsperf.com benchmark suite and save it as a JS script that will run with the npm benchmark package.",
   "main": "index.js",
   "scripts": {
-    "fmt": "prettier-standard 'index.js'"
+    "format": "prettier-standard '{bin/*.js,index.js}'"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["jsperf", "download", "benchmark", "performance", "perf"],
+  "author": "Justin Fuller <justindanielfuller@gmail.com>",
+  "license": "MIT",
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
     "fs-extra": "^8.0.1",
@@ -17,5 +17,19 @@
   "devDependencies": {
     "benchmark": "^2.1.4",
     "prettier-standard": "^9.1.1"
+  },
+  "bin": "bin/grab-jsperf.js",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "linters": {
+      "{bin/*.js,index.js}": [
+       "prettier-standard",
+        "git add"
+      ]
+    }
   }
 }

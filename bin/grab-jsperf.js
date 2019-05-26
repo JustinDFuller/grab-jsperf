@@ -2,6 +2,6 @@
 
 const grabJsperf = require('../')
 
-const [,, url] = process.argv
+const [, , url] = process.argv
 
 grabJsperf(url).then(() => console.log('Benchmark file created for: ' + url))
