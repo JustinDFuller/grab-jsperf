@@ -1,5 +1,7 @@
 # grab-jsperf
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/JustinDFuller/grab-jsperf.svg)](https://greenkeeper.io/)
+
 Grab a jsperf URL and put it into a file that can be run with benchmark.js
 
 ## Install
